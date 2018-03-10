@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
                         fragment = new NotificationsFragment();
                         break;
                     case R.id.action_acc:
-                        fragment = new UserFragment();
+                        Intent intent = new Intent(MainActivity.this, MainLoginActivity.class);
+                        startActivity(intent);
                         break;
 
                 }

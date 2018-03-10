@@ -23,4 +23,8 @@
     <color name="clear_btn_color">#787878</color>
     <color name="overflow_icon_color">#787878</color>
     <color name="hint_color">#808080</color>
+    <color name="background_color">#009688</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white_greyish">#EEEEEE</color>
+    <color name="button_selectorcolor">#9E9E9E</color>
 </resources>
