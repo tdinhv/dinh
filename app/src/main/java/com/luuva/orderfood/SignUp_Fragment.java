@@ -1,5 +1,6 @@
 package com.luuva.orderfood;
 
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
@@ -14,7 +15,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.luuva.background.BackgroundWorker;
 import com.luuva.model.Utils;
 
 import java.util.regex.Matcher;
@@ -22,7 +22,7 @@ import java.util.regex.Pattern;
 
 public class SignUp_Fragment extends Fragment implements OnClickListener {
 	private static View view;
-	private static EditText username,fullName, emailId, mobileNumber, location,
+	private static EditText fullName, emailId, mobileNumber, location,
 			password, confirmPassword;
 	private static TextView login;
 	private static Button signUpButton;
@@ -34,7 +34,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+							 Bundle savedInstanceState) {
 		view = inflater.inflate(R.layout.signup_layout, container, false);
 		initViews();
 		setListeners();
@@ -43,7 +43,6 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 
 	// Initialize all views
 	private void initViews() {
-		username = (EditText) view.findViewById(R.id.userName);
 		fullName = (EditText) view.findViewById(R.id.fullName);
 		emailId = (EditText) view.findViewById(R.id.userEmailId);
 		mobileNumber = (EditText) view.findViewById(R.id.mobileNumber);
@@ -55,7 +54,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 		terms_conditions = (CheckBox) view.findViewById(R.id.terms_conditions);
 
 		// Setting text selector over textviews
-		XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
+		@SuppressLint("ResourceType") XmlResourceParser xrp = getResources().getXml(R.drawable.text_selector);
 		try {
 			ColorStateList csl = ColorStateList.createFromXml(getResources(),
 					xrp);
@@ -75,26 +74,25 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.signUpBtn:
+			case R.id.signUpBtn:
 
-			// Call checkValidation method
-			checkValidation(v);
-			break;
+				// Call checkValidation method
+				checkValidation();
+				break;
 
-		case R.id.already_user:
+			case R.id.already_user:
 
-			// Replace login fragment
-			new MainLoginActivity().replaceLoginFragment();
-			break;
+				// Replace login fragment
+				new MainLoginActivity().replaceLoginFragment();
+				break;
 		}
 
 	}
 
 	// Check Validation Method
-	private void checkValidation(View v) {
+	private void checkValidation() {
 
 		// Get all edittext texts
-		String getUserName = username.getText().toString();
 		String getFullName = fullName.getText().toString();
 		String getEmailId = emailId.getText().toString();
 		String getMobileNumber = mobileNumber.getText().toString();
@@ -107,7 +105,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 		Matcher m = p.matcher(getEmailId);
 
 		// Check if all strings are null or not
-		if (getUserName.equals("")||getFullName.equals("") || getFullName.length() == 0
+		if (getFullName.equals("") || getFullName.length() == 0
 				|| getEmailId.equals("") || getEmailId.length() == 0
 				|| getMobileNumber.equals("") || getMobileNumber.length() == 0
 				|| getLocation.equals("") || getLocation.length() == 0
@@ -116,30 +114,27 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 				|| getConfirmPassword.length() == 0)
 
 			new CustomToast().Show_Toast(getActivity(), view,
-					"Mời nhập đầy đủ thông tin");
+					"All fields are required.");
 
-		// Check if email id valid or not
+			// Check if email id valid or not
 		else if (!m.find())
 			new CustomToast().Show_Toast(getActivity(), view,
-					"Email sai định dạng.");
+					"Your Email Id is Invalid.");
 
-		// Check if both password should be equal
+			// Check if both password should be equal
 		else if (!getConfirmPassword.equals(getPassword))
 			new CustomToast().Show_Toast(getActivity(), view,
-					"Xác nhận mật khẩu không khớp.");
+					"Both password doesn't match.");
 
-		// Make sure user should check Terms and Conditions checkbox
+			// Make sure user should check Terms and Conditions checkbox
 		else if (!terms_conditions.isChecked())
 			new CustomToast().Show_Toast(getActivity(), view,
-					"Mời xác nhận chập nhận các Điều khoản và Điều kiện.");
+					"Please select Terms and Conditions.");
 
-		// Else do signup or do your stuff
-		else {
-			Toast.makeText(getActivity(), "Đang Đăng ký...", Toast.LENGTH_SHORT)
+			// Else do signup or do your stuff
+		else
+			Toast.makeText(getActivity(), "Do SignUp.", Toast.LENGTH_SHORT)
 					.show();
-			String type = "signup";
-			BackgroundWorker backgroundWorker = new BackgroundWorker(v);
-			backgroundWorker.execute(type, getUserName, getFullName, getEmailId, getMobileNumber, getLocation, getPassword);
-		}
+
 	}
 }

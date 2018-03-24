@@ -15,6 +15,9 @@ import com.luuva.adapter.FoodAdapter;
 import com.luuva.model.Category;
 import com.luuva.model.Food;
 
+import com.luuva.adapter.CategoryAdapter;
+import com.luuva.model.Category;
+
 import java.util.ArrayList;
 
 /**

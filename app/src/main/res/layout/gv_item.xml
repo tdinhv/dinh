@@ -18,6 +18,7 @@
             android:id="@+id/txtCategory"
             android:text="ABC"
             android:textAlignment="center"
+            android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
     </LinearLayout>

@@ -61,6 +61,36 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+//    private void addEvent() {
+//
+//    }
+
+    /*@SuppressLint("ResourceType")
+    private void addControll() {
+
+        categories = new ArrayList<>();
+        categories.add(new Category(1,"Cơm",R.drawable.rice));
+        categories.add(new Category(2,"Đồ ăn",R.drawable.rice));
+        categories.add(new Category(3,"Thức uống",R.drawable.rice));
+        categories.add(new Category(4,"Tráng miệng",R.drawable.rice));
+        categories.add(new Category(5,"Nhà làm",R.drawable.rice));
+        categories.add(new Category(6,"Đồ ăn nhẹ",R.drawable.rice));
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        //add a fragment
+        homeFragment = new HomeFragment();
+        fragmentTransaction.add(R.id.fragment_container,homeFragment);
+        fragmentTransaction.commit();
+
+        gvCategory = findViewById(R.id.gvCategory);
+
+
+        adapter = new CategoryAdapter(MainActivity.this,R.layout.gv_item,categories);
+        gvCategory.setAdapter(adapter);
+    }*/
+
     private boolean loadFragment(Fragment fragment){
         if (fragment!=null){
             getFragmentManager().beginTransaction().replace(R.id.fragment_container,fragment).commit();
