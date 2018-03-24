@@ -112,7 +112,6 @@
         android:drawablePadding="8dp"
         android:gravity="center_vertical"
         android:hint="@string/address"
-        android:hint="@string/location"
         android:inputType="textCapWords"
         android:padding="10dp"
         android:singleLine="true"
