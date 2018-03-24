@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.action_acc:
                         Intent intent = new Intent(MainActivity.this, MainLoginActivity.class);
                         startActivity(intent);
+//                        Intent intent = new Intent(MainActivity.this, MainLoginActivity.class);
+//                        startActivity(intent);
+                        fragment = new UserFragment();
                         break;
 
                 }
